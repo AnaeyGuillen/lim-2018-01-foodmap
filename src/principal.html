@@ -17,7 +17,7 @@
   <body>
 
     <nav class="nav align-center valign-wrapper brown lighten-4">
-      <img id="logo" class="brand-logo flex" src="img/logo.png" alt="">
+      <img id="logo" class="brand-logo center" src="img/logo.png" alt="">
     </nav>
 
     <nav>
@@ -31,11 +31,30 @@
         </form>
       </div>
     </nav>
+    
+    <ul id="places"></ul>
+    <button id="more">Mas resultados</button>
+  </div>
 
+  <p><button onclick="geoFindMe()">Aqui estoy</button></p>
     <div id="map"></div>
+    <div id="right-panel">
+      
+<div class="deep-orange lighten-5">
+  <div class="container white">
+    <a class="btn orange modal-trigger" href="#modal1">Mostrar Modal</a>
 
-    <p><button onclick="geoFindMe()">My position</button></p>
-    <div id="out"></div>
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        RESTAURANT
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-action modal-close btn orange">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <footer class="page-footer brown lighten-4 center">
       <div class="footer-copyright brown lighten-4">
@@ -48,6 +67,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
       
     <script src="main.js"></script>
+    <script src="modal.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9xth2F8mJxus4YqOgitOYGDHs81TFeY&callback=initMap"
     async defer></script>
   </body>

@@ -1,95 +1,88 @@
-//Variables para usar la geolocalización
-let map, infoWindow;
+//Buscandome
+function geoFindMe() {
+  let output = document.getElementById("out");
 
-//Geolocalizándome y ubicando mis coordenadas
-  window.initMap=()=>{
-    // navigator.geolocation.getCurrentPosition((position)=> {
-    //   let lat: position.coords.latitude;
-    //   let lng: position.coords.longitude;
-    //   let myPosition=new google.maps.LtLg(lat,lng);
-    //   let ubication={
-    //     center: myPosition,
-    //     zoom: 8,
-    //   };
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>No encontramos tu ubicacion</p>";
+    return;
+  }
+// Coordenadas del lugar donde me encuentro
+  function success(position) {
+    let latitude  = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+    let lima = {lat: -12.0431800, lng: -77.0282400};
     map = new google.maps.Map(document.getElementById('map'), {
-      center: mapCenter,
-      zoom: 8
-      });
-    };
-  }
+        center: lima,
+        zoom: 11,
+        disableDefaultUI: true,
+        scrollwheel: true,
+        });
+  };
+// Si no ubica mis coordenadas
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  };
 
-//Para usar: https://developers.google.com/maps/documentation/javascript/places
-function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      var place = results[i];
-      createMarker(results[i]);
-    }
-  }
+
+  navigator.geolocation.getCurrentPosition(success, error);
 }
 
-//Para usar https://developers.google.com/maps/documentation/javascript/places#place_search_requests
-//Para usar https://developers.google.com/maps/documentation/javascript/places#TextSearchRequests
-// Para revisar https://developers.google.com/maps/documentation/javascript/importing_data
-// https://developers.google.com/maps/documentation/javascript/geolocation
-//https://developers.google.com/maps/documentation/javascript/geolocation
+// Create the places service.
+    let service = new google.maps.places.PlacesService(map);
+    let getNextPage = null;
+    let moreButton = document.getElementById('more');
+    moreButton.onclick = function() {
+      moreButton.disabled = true;
+      if (getNextPage) getNextPage();
+    };
 
+// Perform a nearby search.
+    service.nearbySearch(
+        {location: lima, radius: 500, type: ['restaurant']},
+        function(results, status, pagination) {
+          if (status !== 'OK') return;
 
-//Find Me
-// function geoFindMe() {
-//   var output = document.getElementById("out");
+          createMarkers(results);
+          moreButton.disabled = !pagination.hasNextPage;
+          getNextPage = pagination.hasNextPage && function() {
+          pagination.nextPage();
+          };
+    });
+  
 
-//   if (!navigator.geolocation){
-//     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-//     return;
-//   }
+    function createMarkers(places) {
+      let bounds = new google.maps.LatLngBounds();
+      let placesList = document.getElementById('places');
 
-//   function success(position) {
-//     var latitude  = position.coords.latitude;
-//     var longitude = position.coords.longitude;
+      for (let i = 0, place; place = places[i]; i++) {
+        let image = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
 
-//     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+        let marker = new google.maps.Marker({
+          map: map,
+          icon: image,
+          title: place.name,
+          position: place.geometry.location
+        });
 
-//     var img = new Image();
-//     img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+        let li = document.createElement('li');
+        li.textContent = place.name;
+        placesList.appendChild(li);
 
-//     output.appendChild(img);
-//   };
+        bounds.extend(place.geometry.location);
+      }
+      map.fitBounds(bounds);
+    }
 
-//   function error() {
-//     output.innerHTML = "Unable to retrieve your location";
-//   };
-
-//   output.innerHTML = "<p>Locating…</p>";
-
-//   navigator.geolocation.getCurrentPosition(success, error);
-// }
-
-    // 
-
-    // //Mapa
-    //   let map = new
-    //     google.maps.Map(document.getElementById('map'), options);
+    // //Add marker
+    //   addMarker(markers[i]);
       
-    // //Listen for click on map
-    //   google.maps.event.addListener(map,'click',
-    //   function(event){
-    //     //Add marker
-    //     addMarker({coords:event.latLng});
-    //   });
-
-    // //Array of markers
-    //   let markers = [
-    //     {
-    //       coords: { lat: -12.046374, lng: -77.042793 },
-    //       cotent: '<h1>Lima</h1>'
-    //     }
-    //   ];
-    //   //Loop through markers
-    //   for(let i=0;i<markers.length;i++){
-    //     //Add marker
-    //     addMarker(markers[i]);
-    //   }
     //   //Add Marker Function
     //   function addMarker(props){
     //     let marker=new google.maps.Marker({
@@ -102,4 +95,23 @@ function callback(results, status) {
     //       marker.setIcon(props.iconImage);
     //     }
     //   }
-    // }
+   
+
+   
+
+    // Array of markers
+      // let markers = [
+      //   {
+      //     coords: { lat: -12.046374, lng: -77.042793 },
+      //     cotent: '<h1>Lima</h1>'
+      //   },
+      //   {
+      //     coords: { lat: -12.046374, lng: -77.042793 },
+      //     cotent: '<h1>Lima</h1>'
+      //   },
+      // ];
+     
+      //Loop through markers
+      // for(let i=0;i<markers.length;i++){
+        
+      // }
