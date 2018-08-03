@@ -4,21 +4,30 @@ body{
     font-family: 'Cabin', sans-serif;
 }
 #loader{
-    height: 1500px;
-    width: 1500px;
-    background-color: #ffcc77;
+    height: 1200px;
+    width: 1200px;
+    background-color: #E6DCC8;
     border-radius: 50%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    z-index: 9;
 }
-#loader img{
+#food{
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+#foodmap{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#logo{
+    width: 150px;
+    height: 50px;
 }
 #map{
     height: 600px;

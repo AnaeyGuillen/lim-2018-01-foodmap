@@ -5,12 +5,48 @@
     <title>FoodMap</title>
     <link rel="icon" type="image/png" href="img/food.png">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">    <link href="style.css" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
     <link href="https://fonts.googleapis.com/css?family=Cabin|Lobster" rel="stylesheet">
   </head>
   <body>
+
+    <nav class="nav align-center valign-wrapper brown lighten-4">
+      <img id="logo" class="brand-logo flex" src="img/logo.png" alt="">
+    </nav>
+
+    <nav>
+      <div class="nav-wrapper">
+        <form>
+          <div class="input-field deep-orange lighten-4">
+            <input id="search" type="search" required placeholder="Buscar tipo de comida...">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div>
+    </nav>
+
     <div id="map"></div>
+
     <p><button onclick="geoFindMe()">My position</button></p>
     <div id="out"></div>
+
+    <footer class="page-footer brown lighten-4 center">
+      <div class="footer-copyright brown lighten-4">
+        <div class="container black-text">
+          © 2018 Copyright Anaey Guillen
+        </div>
+      </div>
+    </footer>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      
     <script src="main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9xth2F8mJxus4YqOgitOYGDHs81TFeY&callback=initMap"
     async defer></script>
