@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+    <link rel="stylesheet" href="stylemodal.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Lobster" rel="stylesheet">
   </head>
   <body>
@@ -40,21 +40,24 @@
     <div id="map"></div>
     <div id="right-panel">
       
-<div class="deep-orange lighten-5">
-  <div class="container white">
-    <a class="btn orange modal-trigger" href="#modal1">Mostrar Modal</a>
+  
+  <button id="modalBtn" class="button">Click Here</button>
 
-    <div id="modal1" class="modal bottom-sheet">
-      <div class="modal-content">
-        RESTAURANT
+  <div id="simpleModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+          <span class="closeBtn">&times;</span>
+          <h2>Nombre del restaurant</h2>
+      </div>
+      <div class="modal-body">
+        <p>Direccion del restaurant</p>
+        <p>Precios del restaurant</p>
       </div>
       <div class="modal-footer">
-        <a href="#" class="modal-action modal-close btn orange">Aceptar</a>
+        <h3>Modal Footer</h3>
       </div>
     </div>
   </div>
-</div>
-
 
     <footer class="page-footer brown lighten-4 center">
       <div class="footer-copyright brown lighten-4">

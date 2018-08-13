@@ -80,24 +80,7 @@ function geoFindMe() {
       map.fitBounds(bounds);
     }
 
-    // //Add marker
-    //   addMarker(markers[i]);
-      
-    //   //Add Marker Function
-    //   function addMarker(props){
-    //     let marker=new google.maps.Marker({
-    //       position:props.coords,
-    //       map:map,
-    //     });
-    //     //Check for customicon
-    //     if(props.iconImage){
-    //       //Set icon image
-    //       marker.setIcon(props.iconImage);
-    //     }
-    //   }
-   
-
-   
+     
 
     // Array of markers
       // let markers = [
@@ -110,8 +93,3 @@ function geoFindMe() {
       //     cotent: '<h1>Lima</h1>'
       //   },
       // ];
-     
-      //Loop through markers
-      // for(let i=0;i<markers.length;i++){
-        
-      // }
